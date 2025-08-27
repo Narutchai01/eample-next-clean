@@ -4,9 +4,11 @@ import { HttpHelper } from "@/lib/http";
 
 export class PostRepository implements IPostRepository {
   private http: HttpHelper;
+  private baseUrl: string;
 
-  constructor() {
-    this.http = new HttpHelper("https://jsonplaceholder.typicode.com/");
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+    this.http = new HttpHelper(this.baseUrl);
   }
 
   async getPosts(): Promise<IPost[]> {
